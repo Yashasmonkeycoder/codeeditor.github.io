@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>html code editor - yashas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+	   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital@1&family=Smooch+Sans:wght@500&display=swap');
+	   body{
+	     padding: 1vmin;
+	     background-color: #3a3a3a;
+}
+		.rownr {overflow-y: hidden; background-color: rgb(105,105,105); color: white; text-align: right; vertical-align:top; z-index: 0; height:100%;}
+		.txt {position:relative; left:0%; width: 87%; height:100%; overflow-x: scroll; background-color: rgb(105,105,105); color: white; z-index: 0; font-style:italics; letter-spacing:1px; font-family: Helvetica;border: solid white 2px;}
+		.buuton{
+		  width: 95%;
+		  border: solid white 2px;
+		  border-radius: 18px;
+		  background-color: rgb(105,105,105);
+		  padding: 0.5rem;
+		}
+		.codehu{
+		  border:solid white 2px;
+		  border-radius: 6px;
+		  color: rgb(105,105,105);
+		  margin: 0.1rem;
+		}
+		.nav{
+		  width: 95%;
+		  background-color: #74a7c6;
+		  height: 25%;
+		  margin-top:0;
+		  margin: 0.2rem;
+		  border-radius: 10px;
+}
+.nav h4{
+  padding: 0.5rem;
+}
+.run{
+  color: whitesmoke;
+  position: relative;
+  left: 80%;
+  top: 0%;
+}
+	</style>
+</head>
+<body>
+  <div class="nav">
+    <h4 style="color:whitesmoke;">Html Code editor</h4>
+  </div>
+  <div class="nav">
+    <center><div class="options">
+        <button class="codehu">insert color:<input type="color" value="#61c2da" style="width:40%;" placeholder="insert color" oninput="chCol(this)"></button>
+      <button class="codehu" onclick="window.location.href='#mainn';">Adjust</button>
+      <button class="codehu" onclick="mainRun()">Run</button>
+    
+    </div></center>
+  </div>
+	<div>
+		<textarea class="rownr" rows="17" cols="2" value="1" readonly></textarea>
+		<span>
+			<textarea class="txt" rows="17" cols="150" nowrap="nowrap" wrap="off"
+			autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" id="mainn"
+			onclick="selectionchanged(this)" onkeyup="keyup(this,event)" oninput="input_changed(this);setLsO()" onscroll="scroll_changed(this)"></textarea>
+		</span>
+	</div>
+	<div class="buuton" id="symH">
+	  <button class="codehu" onclick="setWordSp('<',1)">&lt;</button>
+	  <button class="codehu" onclick="setWordSp('>',1)">&gt;</button>
+	  <button class="codehu" onclick="setWordSp(' </',3)">&lt;/</button>
+    <button class="codehu" onclick="setWordSp('(',1)">(</button>
+    <button class="codehu" onclick="setWordSp(')',0)">)</button>
+    <button class="codehu" onclick="setWordSp('{',1)">{</button>
+    <button class="codehu" onclick="setWordSp('}',0)">}</button>
+    <button class="codehu" onclick="setWordSp('[',1)">[</button>
+ 	  <button class="codehu" onclick="setWordSp(']',0)">]</button>
+ 	  <button class="codehu" onclick="setWordSp('#',1)">#</button>
+ 	  <button class="codehu" onclick="setWordSp('.',1)" >.</button>
+ 	  <button class="codehu" onclick="setWordSp(',',1)">,</button>
+ 	  <button class="codehu" onclick="setWordSp('=',1)">=</button>
+ 	  <button class="codehu" onclick="setWordSp('%',1)">%</button>
+ 	  <button class="codehu" onclick="setWordSp('',1)">&quot;</button>
+ 	  <button class="codehu" onclick="setWordSp('',1)">'</button>
+ 	  <button class="codehu" onclick="setWordSp(';',1)">;</button>
+ 	  <button class="codehu" onclick="setWordSp('/',1)">/</button>
+    <button class="codehu" onclick="setWordSp('+',1)">+</button>
+    <button class="codehu" onclick="setWordSp('-',1)">-</button>
+	</div>
+		<div class="buuton" id="codeH" style="margin-top:0.3rem;">
+	  <button class="codehu" onclick="setWordSp('<html> ',6)">&lt;html&gt;</button>
+	  <button class="codehu" onclick="setWordSp('<body>',6)">&lt;body&gt;</button>
+	  <button class="codehu" onclick="setWordSp('<input id=/>',10)">&lt;input/&gt;</button>
+    <button class="codehu" onclick="setWordSp('<button>',8)">&lt;button&gt;</button>
+    <button class="codehu" onclick="setWordSp('<div>',5)">&lt;div&gt;</button>
+    <button class="codehu" onclick="setWordSp('<span>',6)">&lt;span&gt;</button>
+    <button class="codehu" onclick="setWordSp('<style>',7)">&lt;style&gt;</button>
+    <button class="codehu" onclick="setWordSp('<script>',8)">&lt;script&gt;</button>
+	</div>
+	<div id="more" style="color:whitesmoke;">
+	  <button class="codehu" id="coButt" style="margin-top:0.5rem;" onclick="toog()">see more -&gt;</button>
+	  <div id="codeN" style="border:solid black 1px; border-radius:10px;padding:0.4rem;display:none;">
+	    <h4 >add more option to the first column you see above:</h4>
+	    <h5>Note: only enter the text you want to put in the button, keep it short..</h5>
+	    <input type="text" id="foS"/><button class="codehu" onclick="secC()">Done</button>
+	  </div>
+	   <div id="codeM" style="border:solid black 1px; border-radius:10px;padding:0.4rem;margin-top:0.7rem;display: none;">
+
+	    <h4 >add more option to the second column you see above:</h4>
+
+	    <h5>Note: only enter the text you want to put between &lt; and &gt; ,don't put it as a whole</h5>
+	    <input type="text" id="foC"/><button class="codehu" onclick="secS()">Done</button>
+	  </div>
+	</div>
+	<hr>
+	<center ><p style="color:whitesmoke;font-size:3vmin;">made by monkey yashas - (Incomplete project, working...)</p></center>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+</body>
+
+<script Language="javascript">
+
+	var cntline;
+	function keyup(obj, e)
+	{
+		if(e.keyCode >= 33 && e.keyCode <= 40){
+			selectionchanged(obj, e.keyCode);}
+	}
+	
+	function selectionchanged(obj)
+	{
+		var substr = obj.value.substring(0,obj.selectionStart).split('\n');
+		var row = substr.length;
+		var col = substr[substr.length-1].length;
+		var tmpstr = '(' + row.toString() + ',' + col.toString() + ')';
+		if(obj.selectionStart != obj.selectionEnd)
+		{
+			substr = obj.value.substring(obj.selectionStart, obj.selectionEnd).split('\n');
+			row += substr.length - 1;
+			col = substr[substr.length-1].length;
+			tmpstr += ' - (' + row.toString() + ',' + col.toString() + ')';
+		}
+		obj.parentElement.getElementsByTagName('input').value = tmpstr;
+	}
+	function input_changed(obj_txt)
+	{
+		obj_rownr = obj_txt.parentElement.parentElement.getElementsByTagName('textarea')[0];
+		cntline = count_lines(obj_txt.value);
+		if(cntline == 0) cntline = 1;
+		tmp_arr = obj_rownr.value.split('\n');
+		cntline_old = parseInt(tmp_arr[tmp_arr.length - 1], 10);
+		if(cntline != cntline_old)
+		{
+			obj_rownr.cols = cntline.toString().length;
+			populate_rownr(obj_rownr, cntline);
+			scroll_changed(obj_txt);
+		}
+		selectionchanged(obj_txt);
+	}
+	
+	function scroll_changed(obj_txt)
+	{
+		obj_rownr = obj_txt.parentElement.parentElement.getElementsByTagName('textarea')[0];
+		scrollsync(obj_txt,obj_rownr);
+	}
+	
+	function scrollsync(obj1, obj2)
+	{
+		obj2.scrollTop = obj1.scrollTop;
+	}
+	function populate_rownr(obj, cntline)
+	{
+		tmpstr = '';
+		for(i = 1; i <= cntline; i++)
+		{tmpstr = tmpstr + i.toString() + '\n';}
+		obj.value = tmpstr;
+	}
+	function count_lines(txt)
+	{
+		if(txt == '')
+		{
+			return 1;
+		}
+		return txt.split('\n').length + 1;
+	}
+	function auto_height(elem) {
+    elem.style.height = "1px";
+    elem.style.height = (elem.scrollHeight)+"px";
+}
+  function typeInTextarea(el, newText) {
+  var start = el.prop("selectionStart")
+  var end = el.prop("selectionEnd")
+  var text = el.val()
+  var before = text.substring(0, start)
+  var after  = text.substring(end, text.length)
+  el.val(before + newText + after)
+  el[0].selectionStart = el[0].selectionEnd = start + newText.length
+  el.focus()
+  return false
+}
+function ReturnWord(text, caretPos) {
+    var index = text.indexOf(caretPos);
+    var preText = text.substring(0, caretPos);
+    if (preText.indexOf(" ") > 0) {
+        var words = preText.split(" ");
+        return words[words.length - 1]; //return last word
+    }
+    else {
+        return preText;
+    }
+}
+function LstWoo() {
+    var text = document.getElementById("mainn");
+    var caretPos = GetCaretPosition(text)
+    var word = ReturnWord(text.value, caretPos);
+    if (word != null) {
+        return word;
+    }
+}
+function GetCaretPosition(ctrl) {
+    var CaretPos = 0;   // IE Support
+    if (document.selection) {
+        ctrl.focus();
+        var Sel = document.selection.createRange();
+        Sel.moveStart('character', -ctrl.value.length);
+        CaretPos = Sel.text.length;
+    }
+    // Firefox support
+    else if (ctrl.selectionStart || ctrl.selectionStart == '0'){
+        CaretPos = ctrl.selectionStart;
+    return (CaretPos);}
+}
+function LstWo(){
+  let quotedText = /<([a-zA-Z]*)>/;
+  if(quotedText.test(LstWoo())){
+    return quotedText.exec(LstWoo())[1];
+  }else{
+    return '';
+  }
+}
+function setLsO(){
+  if(LstWo() != ''){
+    setWordSp(" </"+LstWo()+">",1)
+  }else{
+    return false;
+  }
+}
+function setWordSp(otem,num){
+  var curPos =document.getElementById("mainn").selectionStart;
+          let x = $("#mainn").val();
+          let text_to_insert = otem;
+       $("#mainn").val(x.slice(0, curPos) + text_to_insert+x.slice(curPos));
+       $("#mainn").trigger("focus");
+       $('#mainn').prop('selectionEnd',curPos+(num));
+    }
+    var countt = 0;
+    function toog(){
+      if(countt%2==0){
+        document.getElementById("codeM").style.display = "block";
+        document.getElementById("codeN").style.display = "block";
+        document.getElementById("coButt").innerTEXT = "see less ->";
+      }else{
+        document.getElementById("codeM").style.display = "none";
+        document.getElementById("codeN").style.display = "none";
+        document.getElementById("coButt").innerTEXT = "see more ->";
+      }
+      countt++;
+    }
+   function decode(html) {
+	var txt = document.createElement('textarea');
+	txt.innerHTML = html;
+	return txt.value;
+}
+    function secC(){
+      var hh = document.getElementById("foS");
+      var ll = $("#symH").html();
+      ll+=decode("<button class=&quot;codehu&quot; onclick=&quot;setWordSp(&apos;"+hh.value+"&apos;,1)&quot;>"+hh.value+"</button>");
+      $("#symH").html(ll);
+      hh.value="";
+      toog();
+    }
+    function secS(){
+      var ho = document.getElementById("foC");
+      var lo = $("#codeH").html();
+      ln = decode("<button class=&quot;codehu&quot; onclick=&quot;setWordSp(&apos;<"+ho.value+">&apos;,"+ho.value.length+2+")&quot;>");
+      lo += ln+"&lt;"+ho.value+"&gt;"+decode("</button>");
+      $("#codeH").html(lo);
+      ho.value="";
+      toog();
+    }
+    function chCol(colr){
+      setWordSp(colr.value,colr.value.length);
+    }
+    function mainRun(){
+      ou = document.getElementById("mainn").value;
+      localStorage.setItem("InterCodeForWebCodeEditorYesForGithub",ou);
+      setTimeout(window.location.href='Test.html',500);
+    }
+    if(localStorage.getItem("InterCodeForWebCodeEditorYesForGithub") == undefined || localStorage.getItem("InterCodeForWebCodeEditorYesForGithub") == null){
+      console.log("no recent saves..")
+    }else{
+      document.getElementById("mainn").value = localStorage.getItem("InterCodeForWebCodeEditorYesForGithub")+"<!--[last save]-->";
+    }
+    
+</script>
+</html>
